@@ -7,7 +7,7 @@ let cards = [];
 // Renk Array'ine ve 0'dan 9'a Kadar Rakamlari Ekliyoruz
 for (let color of colors) {
   for (let number = 0; number <= 9; number++) {
-    cards.push(`${color} ${number}`);
+    cards.push({color:color,number:number});
   }
 }
 
@@ -33,3 +33,37 @@ console.log("Karıştırılmış Kartlar:");
 console.log(cards);
 
 cards.forEach(card => console.log(card));
+
+// Kartlari Oyunculara Dagitiyoruz
+let userCards = cards.slice(0, 7);      // İlk 7 kart kullanıcıya
+let computerCards = cards.slice(7, 14); // Sonraki 7 kart bilgisayara
+
+// Kartlari Ekrana Yazdiriyoruz
+function printCards(player, cardList) {
+    console.log(`${player} Kartları:`);
+    cardList.forEach(card => console.log(`${card.color} ${card.number}`));
+    console.log(""); // Satır boşluğu
+}
+
+printCards("Kullanıcı", userCards);
+printCards("Bilgisayar", computerCards);
+
+// Kazanani Belirliyoruz
+// Kartların toplamını hesapla
+function totalCards(cardList) {
+    return cardList.reduce((sum, card) => sum + card.number, 0);
+}
+
+let userTotal = totalCards(userCards);
+let computerTotal = totalCards(computerCards);
+
+console.log(`Kullanıcı Toplamı: ${userTotal}`);
+console.log(`Bilgisayar Toplamı: ${computerTotal}`);
+
+if (userTotal > computerTotal) {
+    console.log("Kazanan: Kullanıcı 🎉");
+} else if (computerTotal > userTotal) {
+    console.log("Kazanan: Bilgisayar 💻");
+} else {
+    console.log("Berabere 🤝");
+}
