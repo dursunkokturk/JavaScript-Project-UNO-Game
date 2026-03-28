@@ -1,9 +1,5 @@
 UNO Oyunu
-Nihat DUYSAK
-•
-Feb 9
-100 points
-Due Feb 16, 6:00 PM
+
 Versiyon 1
 https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array adresindeki kullanımı test edin.
 Kırmızı, Sarı, Mavi ve Yeşil renkleri ifade edecek şekilde 0'dan 9'a kadar liste içine eleman ekleyin.
