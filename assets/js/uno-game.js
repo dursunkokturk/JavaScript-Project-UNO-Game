@@ -14,6 +14,7 @@ for (let color of colors) {
 console.log("Oluşturulan Kartlar:");
 console.log(cards);
 
+// Fisher-Yates Shuffle
 function shuffle(array) {
 
   // 0 ile i arasında rastgele bir indeks seç
