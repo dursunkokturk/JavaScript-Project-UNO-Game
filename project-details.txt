@@ -40,3 +40,80 @@ Eğer listede kart kalmazsa elindeki toplam en düşük olan oyuncu kazanır.
 sıranın kimde olduğunu bir değişkende tutabilirsiniz.
 
 NOT: Versiyonlu ödevlerin amacı tamamlanan bir önceki versiyonu koruyup (kopyasını alarak) yeni versiyonda üstüne ekleyip geliştirmek. Tamamlanan versiyonun kopyası alınmazsa bir aradan sonra işler karışabilir :)
+
+1. Uno Nedir?
+
+Uno, 1971 yılında Merle Robbins tarafından tasarlanmış bir kart oyunudur. Oyun, renk ve sayı eşleştirmeye dayalıdır ve amaç elinizdeki kartları ilk bitiren kişi olmaktır. Oyunda strateji kadar şans da önemlidir. Genellikle 2-10 kişiyle oynanabilir.
+
+Oyunun temel özellikleri:
+
+108 kart içerir.
+Kartlar renk (kırmızı, mavi, yeşil, sarı) ve tip (sayı veya özel kart) olarak ayrılır.
+Oyun, hızlı ve eğlenceli bir yapıya sahiptir.
+
+2. Uno Kartları
+
+Uno destesi şu kartları içerir:
+
+a) Sayı Kartları
+0’dan 9’a kadar renkli kartlar.
+Her renkten bir adet 0, diğerleri 1’den 9’a iki adet bulunur.
+
+b) Özel Kartlar
+Skip (Atla): Sıradaki oyuncuyu atlar.
+Reverse (Ters): Oyun yönünü değiştirir.
+Draw Two (+2): Sıradaki oyuncu 2 kart çeker ve turunu kaybeder.
+Wild (Joker): Oyuncu rengi seçer.
+Wild Draw Four (+4 Joker): Oyuncu rengi seçer ve sonraki oyuncu 4 kart çeker. (Kural: Bu kartı yalnızca elinizde başka oynanabilir kart yoksa kullanabilirsiniz.)
+
+3. Oyunun Amacı
+Amaç, elinizdeki tüm kartları bitiren ilk oyuncu olmaktır.
+Oyun bittiğinde, diğer oyuncuların elinde kalan kartlar size puan olarak eklenir.
+
+4. Oyunun Başlangıcı
+Her oyuncuya 7 kart dağıtılır.
+Kalan kartlar çekme destesi olarak orta yere konur.
+Çekme destesinin ilk kartı açılarak oyun başlama kartı olur.
+Oyun saat yönünde ilerler (ters kartla yön değişebilir).
+
+5. Oyun Sırası ve Oynama
+Sıradaki oyuncu, elindeki açık kartla aynı renk, aynı sayı veya aynı sembole sahip bir kartı oynar.
+Eğer oynayacak kart yoksa çekme destesinden bir kart çeker. Eğer çektiği kart oynanabilirse hemen oynayabilir.
+Özel kartlar oynanırsa etkileri uygulanır.
+
+6. Özel Kartların Kullanımı
+Kart	Etki
+Skip (Atla)	Sıradaki oyuncu turu kaybeder.
+Reverse (Ters)	Oyun yönü tersine döner.
+Draw Two (+2)	Sıradaki oyuncu 2 kart çeker ve turunu kaybeder.
+Wild (Joker)	Rengi değiştirir; oynayan oyuncu seçer.
+Wild Draw Four (+4)	Rengi değiştirir; sonraki oyuncu 4 kart çeker. Kullanımı kurala bağlı.
+
+7. Uno Dediğinizde
+Elinizde tek kart kaldığında “UNO” demeniz gerekir.
+Söylemezseniz ve diğer oyuncular fark ederse, genellikle 2 kart ceza alırsınız.
+
+8. Oyun Bitişi ve Puanlama
+Bir oyuncu tüm kartlarını bitirdiğinde tur sona erer.
+Kalan kartlar sayılır ve puan olarak kazanan oyuncuya eklenir:
+Kart Tipi	Puan
+Sayı Kartları (0-9)	Kart üzerindeki sayı kadar
+Skip / Reverse / +2	20 puan
+Wild / Wild +4	50 puan
+Genellikle oyun 500 puana ulaşan oyuncu kazanacak şekilde oynanır, ama farklı puan hedefleri de belirlenebilir.
+
+9. Dikkat Edilmesi Gereken Noktalar
++4 Joker kullanımı: Başka oynanabilir kart varken kullanmayın. Diğer oyuncular itiraz edebilir.
+UNO demek: Kartınız 1 kaldığında unutmamak gerekir, yoksa ceza alırsınız.
+
+Strateji:
+Özel kartları kritik anlarda saklamak avantaj sağlar.
+Renkleri dengeli kullanmak, diğer oyuncuları sıkıştırmak önemli.
+Renk seçimi: Joker veya +4 oynarken diğer oyuncuların elindeki renkleri tahmin ederek renk seçmek avantaj sağlar.
+Ters kart (Reverse): 2 kişi oynuyorsa skip etkisi verir.
+
+Özet:
+Uno, sayı ve renk eşleştirme üzerine kurulu, hem şans hem strateji içeren bir kart oyunudur.
+Amaç: elinizdeki kartları ilk bitirmek.
+Özel kartlar oyunun dinamiklerini değiştirir, doğru kullanmak önemlidir.
+Dikkat edilmesi gerekenler: +4 kartı kurallara uygun kullanmak, UNO demeyi unutmamak ve stratejik oynamak.
