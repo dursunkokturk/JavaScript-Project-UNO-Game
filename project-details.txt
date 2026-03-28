@@ -1,0 +1,46 @@
+UNO Oyunu
+Nihat DUYSAK
+•
+Feb 9
+100 points
+Due Feb 16, 6:00 PM
+Versiyon 1
+https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array adresindeki kullanımı test edin.
+Kırmızı, Sarı, Mavi ve Yeşil renkleri ifade edecek şekilde 0'dan 9'a kadar liste içine eleman ekleyin.
+Örneğin Kırmızı 0, Kırmızı 1 gibi -- bunu döngü ile yapmanızı tercih ederim. Listeyi karıştırın ve ekrana yazdırın.
+
+
+Versiyon 2
+Listeyi karıştırdıktan sonra kullanıcı ve bilgisayar için 2 ayrı liste yapın.
+Karışık olan 40 kartın ilk 7'sini kullanıcıya, 2. 7'sini bilgisayara verin.
+Hem bilgisayarın, hem kullanıcının kartlarını ekrana yazdırın
+Kartların toplamı yüksek olan oyuncu kazansın. Kazanan: kullanıcı veya bilgisayar olarak ekrana yazın.
+
+
+Versiyon 3
+Kartları ekrana yazdırmayın.
+Masa isimli ek bir değişken (liste değil değişken) oluşturun.
+7şer kart dağıttıktan sonra kart listesinden 1 tane kartı masaya ekleyin. masayı ekrana yazdırın.
+elindeki kart toplamı, masadaki sayıya en yakın olan oyuncu kazansın.
+
+
+Versiyon 4
+Oyuncuların elindeki kartlardan masadaki kart ile aynı renklerde olanları toplayın. toplamı masadaki sayıya en yakın olan kazansın
+
+
+Versiyon 5
+Masadaki kartın rengine bağlı olarak oyuncuların elindeki aynı renkte olan kartları silin.
+En düşük toplama sahip olan kazansın.
+
+
+Versiyon 6
+Bilgisayar oyuncusunu iptal edin ve 2 oyuncu sıra sıra ellerindeki kartı masaya atsınlar
+inputlar 1. oyuncu ve 2. oyuncu şeklinde olsun
+masaya atma kuralı masadaki kart ile aynı renk veya aynı sayı ise olabilir
+örneğin masada kırmızı 6 varsa, kırmızı bir kart veya 6 sayılı herhangi bir renkteki kartı atabilir
+Kart atamadığında ilk dağıttığımız listeden sıradaki kart o oyuncunun destesine eklenir ve sıra diğer oyuncuya geçer
+Elindeki kartları ilk bitiren oyuncu kazanır.
+Eğer listede kart kalmazsa elindeki toplam en düşük olan oyuncu kazanır.
+sıranın kimde olduğunu bir değişkende tutabilirsiniz.
+
+NOT: Versiyonlu ödevlerin amacı tamamlanan bir önceki versiyonu koruyup (kopyasını alarak) yeni versiyonda üstüne ekleyip geliştirmek. Tamamlanan versiyonun kopyası alınmazsa bir aradan sonra işler karışabilir :)
