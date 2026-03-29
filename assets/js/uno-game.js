@@ -55,6 +55,8 @@ function isValidMove(card) {
   return card.color === game.masa.color || card.number === game.masa.number;
 }
 
+
+
 // Oyuncu Kart Cekme
 function drawCard(playerCards) {
   if (game.deck.length > 0) {
@@ -70,8 +72,18 @@ function playCard(index) {
 
   let selected = playerCards[index];
 
-  if (!isValidMove(selected)) {
-    alert("Geçersiz kart!");
+  // ❗ Kart yoksa çek
+  if (!selected || !isValidMove(selected)) {
+
+    if (game.deck.length > 0) {
+      alert("Kart yok → kart çekildi");
+      drawCard(playerCards);
+    } else {
+      alert("Deste bitti!");
+    }
+
+    game.currentPlayer = game.currentPlayer === 1 ? 2 : 1;
+    renderGame();
     return;
   }
 
@@ -97,6 +109,10 @@ function renderGame() {
   renderCards("player2", game.player2, 2);
 
   renderMasa();
+
+  // Aktif Oyuncu
+  document.querySelector(".player-top").classList.toggle("active", game.currentPlayer === 2);
+  document.querySelector(".player-bottom").classList.toggle("active", game.currentPlayer === 1);
 }
 
 function renderMasa() {
@@ -125,8 +141,14 @@ function renderCards(containerId, cards, playerNumber) {
 
     div.textContent = card.number;
 
+    if (isValidMove(card)) {
+      div.classList.add("playable");
+    } else {
+      div.classList.add("disabled");
+    }
+
     // Sirasi Gelen Oyuncu Tiklayabilir
-    if (game.currentPlayer === playerNumber) {
+    if (game.currentPlayer === playerNumber && isValidMove(card)) {
       div.onclick = () => playCard(index);
     }
 
