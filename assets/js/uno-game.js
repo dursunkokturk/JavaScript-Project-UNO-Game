@@ -8,6 +8,8 @@ let cards = [];
 
 function createDeck(){
 
+  let deck = [];
+
   // Renk Array'ine ve 0'dan 9'a Kadar Rakamlari Ekliyoruz
   for (let color of colors) {
     for (let number = 0; number <= 9; number++) {
