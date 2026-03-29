@@ -38,15 +38,18 @@ cards.forEach(card => console.log(card));
 let userCards = cards.slice(0, 7);      // İlk 7 kart kullanıcıya
 let computerCards = cards.slice(7, 14); // Sonraki 7 kart bilgisayara
 
-// Kartlari Ekrana Yazdiriyoruz
-function printCards(player, cardList) {
-    console.log(`${player} Kartları:`);
-    cardList.forEach(card => console.log(`${card.color} ${card.number}`));
-    console.log(""); // Satır boşluğu
-}
+// Masadan Kart Aliyoruz
+let masa = cards[14];
 
-printCards("Kullanıcı", userCards);
-printCards("Bilgisayar", computerCards);
+console.log("Masadaki Kart:");
+console.log(`${masa.color} ${masa.number}`);
+
+// Kartlari Ekrana Yazdiriyoruz
+// function printCards(player, cardList) {
+//     console.log(`${player} Kartları:`);
+//     cardList.forEach(card => console.log(`${card.color} ${card.number}`));
+//     console.log("");
+// }
 
 // Kazanani Belirliyoruz
 // Kartların toplamını hesapla
@@ -60,9 +63,13 @@ let computerTotal = totalCards(computerCards);
 console.log(`Kullanıcı Toplamı: ${userTotal}`);
 console.log(`Bilgisayar Toplamı: ${computerTotal}`);
 
-if (userTotal > computerTotal) {
+// Masaya yakınlık
+let userDiff = Math.abs(userTotal - masa.number);
+let computerDiff = Math.abs(computerTotal - masa.number);
+
+if (userDiff > computerDiff) {
     console.log("Kazanan: Kullanıcı 🎉");
-} else if (computerTotal > userTotal) {
+} else if (computerDiff > userDiff) {
     console.log("Kazanan: Bilgisayar 💻");
 } else {
     console.log("Berabere 🤝");
