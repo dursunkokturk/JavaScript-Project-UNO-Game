@@ -6,7 +6,7 @@ const colors = ["Kırmızı", "Sarı", "Mavi", "Yeşil"];
 // Bos Array Olusturuyoruz
 let cards = [];
 
-function createDeck(){
+function createDeck() {
 
   let deck = [];
 
@@ -37,9 +37,21 @@ function shuffle(deck) {
 // Kartlari Karistiriyoruz
 shuffle(cards);
 
-// Kartlari Dagitiyoruz
-let player1Cards = cards.slice(0, 7);
-let player2Cards = cards.slice(7, 14);
+function initGame() {
+  let deck = createDeck();
+  shuffle(deck);
+
+  return {
+    // Kartlari Dagitiyoruz
+    player1: deck.slice(0, handSize),
+    player2: deck.slice(handSize, handSize * 2),
+    masa: deck[handSize * 2],
+    deck: deck.slice(handSize * 2 + 1),
+    currentPlayer: 1
+  }
+}
+
+
 
 // Masa kartı
 masa = cards[14];
