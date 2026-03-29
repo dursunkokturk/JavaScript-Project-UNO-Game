@@ -57,19 +57,24 @@ function totalCards(cardList) {
     return cardList.reduce((sum, card) => sum + card.number, 0);
 }
 
-let userTotal = totalCards(userCards);
-let computerTotal = totalCards(computerCards);
+// Ayni Renkteki Kartlari Filtreliyoruz
+let userSameColor = userCards.filter(card => card.color === masa.color);
+let computerSameColor = computerCards.filter(card => card.color === masa.color);
 
-console.log(`Kullanıcı Toplamı: ${userTotal}`);
-console.log(`Bilgisayar Toplamı: ${computerTotal}`);
+// Kartlarin Toplamini Aliyoruz
+let userTotal = totalCards(userSameColor);
+let computerTotal = totalCards(computerSameColor);
 
-// Masaya yakınlık
+console.log(`Kullanıcı Aynı Renk Toplamı: ${userTotal}`);
+console.log(`Bilgisayar Aynı Renk Toplamı: ${computerTotal}`);
+
+// Masaya Yakinlik Durumunu Hesapliyoruz
 let userDiff = Math.abs(userTotal - masa.number);
 let computerDiff = Math.abs(computerTotal - masa.number);
 
-if (userDiff > computerDiff) {
+if (userDiff < computerDiff) {
     console.log("Kazanan: Kullanıcı 🎉");
-} else if (computerDiff > userDiff) {
+} else if (userDiff > computerCards) {
     console.log("Kazanan: Bilgisayar 💻");
 } else {
     console.log("Berabere 🤝");
