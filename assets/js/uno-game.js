@@ -7,7 +7,7 @@ let cards = [];
 // Renk Array'ine ve 0'dan 9'a Kadar Rakamlari Ekliyoruz
 for (let color of colors) {
   for (let number = 0; number <= 9; number++) {
-    cards.push({color:color,number:number});
+    cards.push({ color: color, number: number });
   }
 }
 
@@ -54,28 +54,24 @@ console.log(`${masa.color} ${masa.number}`);
 // Kazanani Belirliyoruz
 // Kartların toplamını hesapla
 function totalCards(cardList) {
-    return cardList.reduce((sum, card) => sum + card.number, 0);
+  return cardList.reduce((sum, card) => sum + card.number, 0);
 }
 
-// Ayni Renkteki Kartlari Filtreliyoruz
-let userSameColor = userCards.filter(card => card.color === masa.color);
-let computerSameColor = computerCards.filter(card => card.color === masa.color);
+// Ayni Renkteki Kartlari Siliyoruz
+let userRemaining = userCards.filter(card => card.color !== masa.color);
+let computerRemaining = computerCards.filter(card => card.color !== masa.color);
 
-// Kartlarin Toplamini Aliyoruz
-let userTotal = totalCards(userSameColor);
-let computerTotal = totalCards(computerSameColor);
+// Kalan Kartlarin Toplamini Aliyoruz
+let userTotal = totalCards(userRemaining);
+let computerTotal = totalCards(computerRemaining);
 
 console.log(`Kullanıcı Aynı Renk Toplamı: ${userTotal}`);
 console.log(`Bilgisayar Aynı Renk Toplamı: ${computerTotal}`);
 
-// Masaya Yakinlik Durumunu Hesapliyoruz
-let userDiff = Math.abs(userTotal - masa.number);
-let computerDiff = Math.abs(computerTotal - masa.number);
-
-if (userDiff < computerDiff) {
-    console.log("Kazanan: Kullanıcı 🎉");
-} else if (userDiff > computerCards) {
-    console.log("Kazanan: Bilgisayar 💻");
+if (userTotal < computerTotal) {
+  console.log("Kazanan: Kullanıcı 🎉");
+} else if (userTotal > computerTotal) {
+  console.log("Kazanan: Bilgisayar 💻");
 } else {
-    console.log("Berabere 🤝");
+  console.log("Berabere 🤝");
 }
