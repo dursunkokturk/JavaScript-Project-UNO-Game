@@ -29,18 +29,31 @@ function shuffle(array) {
 // Kartlari Karistiriyoruz
 shuffle(cards);
 
-console.log("Karıştırılmış Kartlar:");
-console.log(cards);
+// Kartlari Dagitiyoruz
+let player1Cards = cards.slice(0, 7);
+let player2Cards = cards.slice(7, 14);
 
-cards.forEach(card => console.log(card));
+// Masa kartı
+masa = cards[14];
+
+// Deste
+let deck = cards.slice(15);
+
+// Sıra
+let currentPlayer = 1;
+
+// console.log("Karıştırılmış Kartlar:");
+// console.log(cards);
+
+// cards.forEach(card => console.log(card));
 
 // Kartlari Oyunculara Dagitiyoruz
-let userCards = cards.slice(0, 7);      // İlk 7 kart kullanıcıya
-let computerCards = cards.slice(7, 14); // Sonraki 7 kart bilgisayara
+// let userCards = cards.slice(0, 7);      // İlk 7 kart kullanıcıya
+// let computerCards = cards.slice(7, 14); // Sonraki 7 kart bilgisayara
 
 // Masadan Kart Aliyoruz
-let masa = cards[14];
-
+// let masa = cards[14];
+console.log("Oyun Başladı");
 console.log("Masadaki Kart:");
 console.log(`${masa.color} ${masa.number}`);
 
@@ -57,21 +70,76 @@ function totalCards(cardList) {
   return cardList.reduce((sum, card) => sum + card.number, 0);
 }
 
-// Ayni Renkteki Kartlari Siliyoruz
-let userRemaining = userCards.filter(card => card.color !== masa.color);
-let computerRemaining = computerCards.filter(card => card.color !== masa.color);
+while (true) {
 
-// Kalan Kartlarin Toplamini Aliyoruz
-let userTotal = totalCards(userRemaining);
-let computerTotal = totalCards(computerRemaining);
+  let playerCards = currentPlayer === 1 ? player1Cards : player2Cards;
 
-console.log(`Kullanıcı Aynı Renk Toplamı: ${userTotal}`);
-console.log(`Bilgisayar Aynı Renk Toplamı: ${computerTotal}`);
+  console.log(`\n--- Oyuncu ${currentPlayer} ---`);
+  console.log(`Masadaki Kart: ${masa.color} ${masa.number}`);
 
-if (userTotal < computerTotal) {
-  console.log("Kazanan: Kullanıcı 🎉");
-} else if (userTotal > computerTotal) {
-  console.log("Kazanan: Bilgisayar 💻");
-} else {
-  console.log("Berabere 🤝");
+  // Kartlari Gosteriyoruz
+  playerCards.forEach((card, i) => {
+    console.log(`${i}: ${card.color} ${card.number}`);
+  });
+
+  // Uygun Kart Var Mi Kontrolu Yapiyoruz
+  let validIndexes = playerCards
+    .map((card, i) =>
+      (card.color === masa.color || card.number === masa.number) ? i : -1
+    )
+    .filter(i => i !== -1);
+
+  // Uygun Kart Yoksa Desteden Aliyoruz
+  if (validIndexes.length === 0) {
+    console.log("Kart yok → desteden çekiliyor");
+
+    if (deck.length > 0) {
+      playerCards.push(deck.shift());
+    } else {
+      console.log("Deste bitti!");
+
+      let total1 = totalCards(player1Cards);
+      let total2 = totalCards(player2Cards);
+
+      if (total1 < total2) console.log("Kazanan: Oyuncu 1");
+      else if (total2 < total1) console.log("Kazanan: Oyuncu 2");
+      else console.log("Berabere");
+
+      break;
+    }
+
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    continue;
+  }
+
+  // Kullanicidan Secim Aliyoruz
+  let choice = prompt(`Oyuncu ${currentPlayer}, kart indexi gir:`);
+
+  choice = Number(choice);
+  let selectedCard = playerCards[choice];
+
+  // Gecersiz Secim Kontrolu
+  if (
+    !selectedCard ||
+    (selectedCard.color !== masa.color &&
+     selectedCard.number !== masa.number)
+  ) {
+    console.log("Geçersiz kart!");
+    continue;
+  }
+
+  // Karti Oynuyoruz
+  masa = selectedCard;
+  playerCards.splice(choice, 1);
+
+  console.log(`Atılan Kart: ${masa.color} ${masa.number}`);
+
+  // Kazanan Oyuncu
+  if (playerCards.length === 0) {
+    console.log(`Kazanan: Oyuncu ${currentPlayer} 🎉`);
+    break;
+  }
+
+  // Sira Degistiriyoruz
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
 }
