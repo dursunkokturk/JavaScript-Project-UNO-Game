@@ -24,15 +24,14 @@ console.log("Oluşturulan Kartlar:");
 console.log(cards);
 
 // Fisher-Yates Shuffle
-function shuffle(array) {
+function shuffle(deck) {
 
   // 0 ile i arasında rastgele bir indeks seç
   // array[i] ile array[j] yi Yer Degistiriyoruz
-  for (let i = array.length - 1; i > 0; i--) {
+  for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [deck[i], deck[j]] = [deck[j], deck[i]];
   }
-  return array;
 }
 
 // Kartlari Karistiriyoruz
