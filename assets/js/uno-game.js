@@ -1,14 +1,21 @@
+const handSize = 7;
+
 // Renk Array'i Olusturuyoruz
 const colors = ["Kırmızı", "Sarı", "Mavi", "Yeşil"];
 
 // Bos Array Olusturuyoruz
 let cards = [];
 
-// Renk Array'ine ve 0'dan 9'a Kadar Rakamlari Ekliyoruz
-for (let color of colors) {
-  for (let number = 0; number <= 9; number++) {
-    cards.push({ color: color, number: number });
+function createDeck(){
+
+  // Renk Array'ine ve 0'dan 9'a Kadar Rakamlari Ekliyoruz
+  for (let color of colors) {
+    for (let number = 0; number <= 9; number++) {
+      deck.push({ color, number });
+    }
   }
+
+  return deck;
 }
 
 console.log("Oluşturulan Kartlar:");
