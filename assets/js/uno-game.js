@@ -1,154 +1,206 @@
-const handSize = 7;
+// =============================================
+//  UNO OYUNU — PASS & PLAY
+// =============================================
 
-// Renk Array'i Olusturuyoruz
-const colors = ["Kırmızı", "Sarı", "Mavi", "Yeşil"];
+const HAND_SIZE = 7;
+const COLORS = ["Kırmızı", "Sarı", "Mavi", "Yeşil"];
+const COLOR_CLASS = {
+  "Kırmızı": "red",
+  "Sarı": "yellow",
+  "Mavi": "blue",
+  "Yeşil": "green"
+};
 
 let game;
 
-// Bos Array Olusturuyoruz
-let cards = [];
-
-// Deck Olusturuyoruz
+// ---------- DESTE OLUŞTUR ----------
 function createDeck() {
-  let deck = [];
-
-  // Renk Array'ine ve 0'dan 9'a Kadar Rakamlari Ekliyoruz
-  for (let color of colors) {
+  const deck = [];
+  for (const color of COLORS) {
     for (let number = 0; number <= 9; number++) {
       deck.push({ color, number });
     }
   }
-
   return deck;
 }
 
-// Fisher-Yates Shuffle
+// ---------- FISHER-YATES SHUFFLE ----------
 function shuffle(deck) {
-
-  // 0 ile i arasında rastgele bir indeks seç
-  // array[i] ile array[j] yi Yer Degistiriyoruz
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
 }
 
-// Oyunu Baslatiyoruz
+// ---------- OYUNU BAŞLAT ----------
 function initGame() {
-  let deck = createDeck();
+  const deck = createDeck();
   shuffle(deck);
 
   game = {
-    // Kartlari Dagitiyoruz
-    player1: deck.slice(0, handSize),
-    player2: deck.slice(handSize, handSize * 2),
-    masa: deck[handSize * 2],
-    deck: deck.slice(handSize * 2 + 1),
+    player1: deck.slice(0, HAND_SIZE),
+    player2: deck.slice(HAND_SIZE, HAND_SIZE * 2),
+    masa: deck[HAND_SIZE * 2],
+    deck: deck.slice(HAND_SIZE * 2 + 1),
     currentPlayer: 1
   };
 
+  hideOverlay("win-overlay");
+  hideOverlay("handoff-overlay");
   renderGame();
 }
 
-// Yapilacak Hamle Var Mi Kontrolu
+// ---------- GEÇERLİ HAMLe KONTROLÜ ----------
 function isValidMove(card) {
   return card.color === game.masa.color || card.number === game.masa.number;
 }
 
-
-
-// Oyuncu Kart Cekme
+// ---------- DESTE'DEN KART ÇEK ----------
 function drawCard(playerCards) {
   if (game.deck.length > 0) {
     playerCards.push(game.deck.shift());
+    return true;
   }
+  return false;
 }
 
-// Kart Oynuyoruz
+// ---------- KART OYNA ----------
 function playCard(index) {
-  let playerCards = game.currentPlayer === 1
-    ? game.player1
-    : game.player2;
+  const playerCards = game.currentPlayer === 1 ? game.player1 : game.player2;
+  const selected = playerCards[index];
 
-  let selected = playerCards[index];
+  if (!selected || !isValidMove(selected)) return;
 
-  // ❗ Kart yoksa çek
-  if (!selected || !isValidMove(selected)) {
-
-    if (game.deck.length > 0) {
-      alert("Kart yok → kart çekildi");
-      drawCard(playerCards);
-    } else {
-      alert("Deste bitti!");
-    }
-
-    game.currentPlayer = game.currentPlayer === 1 ? 2 : 1;
-    renderGame();
-    return;
-  }
-
-  // Karti Oyna
   game.masa = selected;
   playerCards.splice(index, 1);
 
-  // Kazandi Mi?
   if (playerCards.length === 0) {
-    alert(`Kazanan: Oyuncu ${game.currentPlayer}`);
+    showWin(game.currentPlayer);
     return;
   }
 
-  // Sira Degistir
   game.currentPlayer = game.currentPlayer === 1 ? 2 : 1;
+  showHandoff();
+}
 
+// ---------- DESTEDEN KRT ÇEK (BUTON) ----------
+function drawFromDeck() {
+  const playerCards = game.currentPlayer === 1 ? game.player1 : game.player2;
+
+  if (game.deck.length === 0) {
+    showToast("Deste bitti!");
+    return;
+  }
+
+  drawCard(playerCards);
+  game.currentPlayer = game.currentPlayer === 1 ? 2 : 1;
+  showHandoff();
+}
+
+// ---------- PASS & PLAY OVERLAY ----------
+function showHandoff() {
+  const next = game.currentPlayer;
+  document.getElementById("handoff-title").textContent = `Sıra Oyuncu ${next}'de`;
+  document.getElementById("handoff-desc").innerHTML =
+    `Cihazı <strong>Oyuncu ${next}</strong>'e ver.<br>Hazır olunca butona bas.`;
+  showOverlay("handoff-overlay");
+}
+
+function confirmHandoff() {
+  hideOverlay("handoff-overlay");
   renderGame();
 }
 
+// ---------- KAZANAN ----------
+function showWin(player) {
+  document.getElementById("win-title").textContent = `Kazanan: Oyuncu ${player} 🎉`;
+  showOverlay("win-overlay");
+}
+
+// ---------- OVERLAY YARDIMCILARI ----------
+function showOverlay(id) {
+  document.getElementById(id).classList.remove("hidden");
+}
+function hideOverlay(id) {
+  document.getElementById(id).classList.add("hidden");
+}
+
+// ---------- TOAST BİLDİRİM ----------
+function showToast(msg) {
+  const existing = document.getElementById("toast");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.id = "toast";
+  toast.textContent = msg;
+  toast.style.cssText = `
+    position:fixed; bottom:80px; left:50%; transform:translateX(-50%);
+    background:rgba(0,0,0,0.8); color:#fff; padding:8px 18px;
+    border-radius:20px; font-size:0.85rem; z-index:200;
+    pointer-events:none; transition:opacity 0.3s;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = "0"; setTimeout(() => toast.remove(), 300); }, 1800);
+}
+
+// ---------- RENDER ----------
 function renderGame() {
+  const cp = game.currentPlayer;
+  const opponent = cp === 1 ? 2 : 1;
+  const activeCards  = cp === 1 ? game.player1 : game.player2;
+  const hiddenCards  = cp === 1 ? game.player2 : game.player1;
 
-  renderCards("player1", game.player1, 1);
-  renderCards("player2", game.player2, 2);
+  // Etiketler
+  document.getElementById("label-top").textContent    = `Oyuncu ${opponent}`;
+  document.getElementById("label-bottom").textContent = `Oyuncu ${cp}`;
+  document.getElementById("count-top").textContent    = `${hiddenCards.length} kart`;
 
+  // Masa
   renderMasa();
 
-  // Aktif Oyuncu
-  document.querySelector(".player-top").classList.toggle("active", game.currentPlayer === 2);
-  document.querySelector(".player-bottom").classList.toggle("active", game.currentPlayer === 1);
+  // Deste sayısı
+  document.getElementById("deck-count").textContent = game.deck.length;
+
+  // Rakip — arka yüzlü
+  renderHiddenCards("cards-top", hiddenCards.length);
+
+  // Aktif oyuncu
+  renderActiveCards("cards-bottom", activeCards);
 }
 
 function renderMasa() {
-  const masaDiv = document.getElementById("masa");
-  masaDiv.className = "card";
-
-  let card = game.masa;
-
-  masaDiv.textContent = card.number;
-
-  addColorClass(masaDiv, card.color);
+  const el = document.getElementById("masa");
+  el.className = `card masa-card ${COLOR_CLASS[game.masa.color]}`;
+  el.textContent = game.masa.number;
 }
 
-// Kartlari Bas
-function renderCards(containerId, cards, playerNumber) {
-
+function renderHiddenCards(containerId, count) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
+  container.className = "card-list hidden-hand";
+
+  for (let i = 0; i < count; i++) {
+    const div = document.createElement("div");
+    div.className = "card card-back";
+    div.textContent = "?";
+    container.appendChild(div);
+  }
+}
+
+function renderActiveCards(containerId, cards) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  container.className = "card-list";
 
   cards.forEach((card, index) => {
-
     const div = document.createElement("div");
-    div.classList.add("card");
+    const cls = COLOR_CLASS[card.color];
+    const valid = isValidMove(card);
 
-    addColorClass(div, card.color);
-
+    div.className = `card ${cls} ${valid ? "playable" : "disabled"}`;
     div.textContent = card.number;
 
-    if (isValidMove(card)) {
-      div.classList.add("playable");
-    } else {
-      div.classList.add("disabled");
-    }
-
-    // Sirasi Gelen Oyuncu Tiklayabilir
-    if (game.currentPlayer === playerNumber && isValidMove(card)) {
+    if (valid) {
       div.onclick = () => playCard(index);
     }
 
@@ -156,13 +208,11 @@ function renderCards(containerId, cards, playerNumber) {
   });
 }
 
-// Renkler
-function addColorClass(element, color) {
-  if (color === "Kırmızı") element.classList.add("red");
-  if (color === "Mavi") element.classList.add("blue");
-  if (color === "Yeşil") element.classList.add("green");
-  if (color === "Sarı") element.classList.add("yellow");
-}
+// ---------- EVENT LISTENERS ----------
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("handoff-btn").addEventListener("click", confirmHandoff);
+  document.getElementById("restart-btn").addEventListener("click", initGame);
+  document.getElementById("deck-pile").addEventListener("click", drawFromDeck);
 
-// 🎯 OYUNU BAŞLAT
-initGame();
+  initGame();
+});
