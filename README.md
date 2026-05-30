@@ -4,7 +4,7 @@
 
 ## Canlı Önizleme
 
-[Proje Önizleme.]()
+[Proje Önizleme.](https://dursunkokturk.github.io/JavaScript-Project-UNO-Game)
 
 ![Proje Görseli]()
 
