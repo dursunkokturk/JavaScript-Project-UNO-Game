@@ -1,6 +1,6 @@
 # TR
 # UNO Oyunu — Pass & Play
-İki oyuncunun tek cihazı sırayla paylaşarak oynadığı, saf HTML, CSS ve Vanilla JavaScript ile geliştirilmiş duyarlı bir UNO kart oyunu.
+İki oyuncunun tek cihazı sırayla paylaşarak oynadığı, saf HTML, CSS ve JavaScript ile geliştirilmiş duyarlı bir UNO kart oyunu.
 
 ## Canlı Önizleme
 
@@ -60,15 +60,16 @@ uno-game/ <br>
         └── uno-game.js <br>
 
 ## Kurulum
-Proje herhangi bir bağımlılık gerektirmez. Klonladıktan sonra doğrudan tarayıcıda açabilirsiniz.
-bash# Repoyu klonlayın
-git clone https://github.com/kullanici-adi/uno-game.git
+Proje herhangi bir bağımlılık gerektirmez. Klonladıktan sonra doğrudan tarayıcıda açabilirsiniz. <br>
+bash# Repoyu klonlayın <br>
+git clone https://github.com/dursunkokturk/JavaScript-Project-UNO-Game.git
 
 ### Proje klasörüne girin
-cd uno-game
+cd JavaScript-Project-UNO-Game
 
 ### index.html dosyasını tarayıcıda açın
-open index.html
+Proje klasörü içinde çift tıklayarak yada <br>
+Projeyi VSCode içinde açıp index.html dosyasının üzerinde sağ tıkladıktan sonra "Open With Live Server" tıklayarak projeyi browser'da açıyoruz.
 
 ## Tasarım Detayları
 
@@ -93,6 +94,10 @@ A responsive UNO card game built with pure HTML, CSS, and Vanilla JavaScript, wh
 Live Preview
 
 ## Project Preview.
+
+[Proje Önizleme.](https://dursunkokturk.github.io/JavaScript-Project-UNO-Game)
+
+![Proje Görseli](assets/img/javascript-project-uno-game.png)
 
 ## Game Mechanics
 
@@ -148,13 +153,14 @@ uno-game/ <br>
 ## Installation
 The project requires no dependencies. After cloning, you can open it directly in the browser.
 bash# Clone the repo
-git clone https://github.com/username/uno-game.git
+git clone https://github.com/dursunkokturk/JavaScript-Project-UNO-Game.git
 
 ### Navigate to the project folder
-cd uno-game
+cd JavaScript-Project-UNO-Game
 
 ### Open index.html in the browser
-open index.html
+Open it by double-clicking inside the project folder, or <br>
+open the project in VSCode, right-click on the index.html file, and select "Open With Live Server" to launch it in the browser.
 
 ## Design Details
 
