@@ -6,7 +6,7 @@
 
 [Proje Önizleme.](https://dursunkokturk.github.io/JavaScript-Project-UNO-Game)
 
-![Proje Görseli]()
+![Proje Görseli](assets/img/javascript-project-uno-game.png)
 
 ## Oyun Mekaniği
 
